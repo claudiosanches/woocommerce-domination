@@ -41,29 +41,14 @@ class WooCommerce_Domination_Admin {
 		// Remove not useful widgets.
 		// add_action( 'widgets_init', array( $this, 'unregister_posts_widgets' ), 11 );
 
-		// Menus.
-		add_action( 'admin_menu', array( $this, 'admin_menu' ), 999 );
-		add_action( 'menu_order', array( $this, 'menu_order' ), 999 );
-
-		// WooCommerce Post types arguments.
-		add_filter( 'woocommerce_register_post_type_shop_order', array( $this, 'custom_post_type_shop_order' ) );
-		add_filter( 'woocommerce_register_post_type_shop_coupon', array( $this, 'custom_post_type_shop_coupon' ) );
-
-		// Screen ids.
-		add_filter( 'woocommerce_reports_screen_ids', array( $this, 'custom_screen_ids' ) );
-		add_filter( 'woocommerce_screen_ids', array( $this, 'custom_screen_ids' ) );
-
-		// Menu highlight.
-		add_action( 'admin_head', array( $this, 'menu_highlight' ), 999 );
-
 		// Remove help tabs.
 		add_action( 'admin_head', array( $this, 'remove_help_tabs' ) );
 
 		// Custom users screens.
 		add_filter( 'manage_users_columns', array( $this, 'custom_users_columns' ) );
 
-		// Load admin scripts.
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 999 );
+		// Actions only for shop managers and admins.
+		$this->init_woocommerce_actions();
 	}
 
 	/**
@@ -80,6 +65,34 @@ class WooCommerce_Domination_Admin {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Initialize WooCommerce custom actions only for shop managers.
+	 *
+	 * @return void
+	 */
+	public function init_woocommerce_actions() {
+		if ( current_user_can( 'manage_woocommerce' ) ) {
+
+			// Menus.
+			add_action( 'admin_menu', array( $this, 'admin_menu' ), 999 );
+			add_action( 'menu_order', array( $this, 'menu_order' ), 999 );
+
+			// WooCommerce Post types arguments.
+			add_filter( 'woocommerce_register_post_type_shop_order', array( $this, 'custom_post_type_shop_order' ) );
+			add_filter( 'woocommerce_register_post_type_shop_coupon', array( $this, 'custom_post_type_shop_coupon' ) );
+
+			// Screen ids.
+			add_filter( 'woocommerce_reports_screen_ids', array( $this, 'custom_screen_ids' ) );
+			add_filter( 'woocommerce_screen_ids', array( $this, 'custom_screen_ids' ) );
+
+			// Menu highlight.
+			add_action( 'admin_head', array( $this, 'menu_highlight' ), 999 );
+
+			// Load admin scripts.
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 999 );
+		}
 	}
 
 	/**
@@ -132,7 +145,7 @@ class WooCommerce_Domination_Admin {
 		global $menu;
 
 		$wc_admin_menus = new WC_Admin_Menus;
-		$menu[] = array( 'Teste', 'read', 'separator-wc-domination1', '', 'wp-not-current-submenu wp-menu-separator' );
+		$menu[] = array( '', 'read', 'separator-wc-domination1', '', 'wp-not-current-submenu wp-menu-separator' );
 		$menu[] = array( '', 'read', 'separator-wc-domination2', '', 'wp-not-current-submenu wp-menu-separator' );
 
 		// Remove not useful menus.
