@@ -149,7 +149,7 @@ class WooCommerce_Domination_Admin {
 		}
 		add_menu_page( $orders_menu_name, $orders_menu_name, 'manage_woocommerce', 'edit.php?post_type=shop_order' );
 
-		add_menu_page( __( 'Customers' ), __( 'Customers' ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), 'dashicons dashicons-groups', '55.9' );
+		add_menu_page( __( 'Customers' ), __( 'Customers' ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), '', '55.9' );
 	}
 
 	/**
