@@ -61,8 +61,14 @@ class WC_Domination {
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
-		// Front end actions.
+		// Plugin actions.
+		$this->public_actions();
+
+		// Front-end actions.
 		$this->front_end_actions();
+
+		// Public scripts.
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 
 	/**
@@ -284,5 +290,108 @@ class WC_Domination {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Do public actions.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function public_actions() {
+		$settings = self::get_plugin_options();
+
+		if ( current_user_can( 'manage_woocommerce' ) ) {
+			// Custom admin bar.
+			add_action( 'admin_bar_menu', array( $this, 'admin_bar' ), 50 );
+		}
+
+		// Remove posts from admin bar.
+		if ( 'all' == $settings['core_features'] ) {
+			add_action( 'admin_bar_menu', array( $this, 'remove_posts_from_admin_bar' ), 999 );
+		} else if (
+			'managers' == $settings['core_features'] &&
+			current_user_can( 'manage_woocommerce' ) &&
+			! current_user_can( 'manage_options' )
+		) {
+			add_action( 'admin_bar_menu', array( $this, 'remove_posts_from_admin_bar' ), 999 );
+		}
+	}
+
+	/**
+	 * Public scripts.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function enqueue_scripts() {
+		if ( current_user_can( 'manage_woocommerce' ) ) {
+			wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'admin/assets/css/menus.css', plugin_dir_path( __FILE__ ) ), array(), self::VERSION );
+		}
+	}
+
+	/**
+	 * Remove posts from admin bar.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function remove_posts_from_admin_bar( $wp_admin_bar ) {
+		$wp_admin_bar->remove_menu( 'new-post' );
+	}
+
+	/**
+	 * Custom admin bar.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function admin_bar( $wp_admin_bar ) {
+		// Orders.
+		$orders_menu_count = '<span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0">0</span>';
+		$order_menu_title  = __( 'Orders', self::$plugin_slug );
+		if ( $order_count = wc_processing_order_count() ) {
+			$orders_menu_count = '<span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-' . $order_count . '">' . number_format_i18n( $order_count ) . '</span>';
+			$order_menu_title  = sprintf( _n( '%d order pending', '%d orders pending', $order_count, self::$plugin_slug ), $order_count );
+		}
+
+		$wp_admin_bar->add_node(
+			array(
+				'id'    => 'wc-orders',
+				'title' => $orders_menu_count,
+				'meta'  => array(
+					'title' => $order_menu_title
+				),
+				'href'  => admin_url( 'edit.php?post_type=shop_order' )
+			)
+		);
+
+		// Reports.
+		$wp_admin_bar->add_node(
+			array(
+				'id'    => 'wc-reports',
+				'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Reports', self::$plugin_slug ) . '</span>',
+				'meta'  => array(
+					'title' => __( 'view reports', self::$plugin_slug )
+				),
+				'href'  => admin_url( 'admin.php?page=wc-reports' )
+			)
+		);
+
+		// General.
+		if ( ! is_admin() ) {
+			$wp_admin_bar->add_menu(
+				array(
+					'id'     => 'wc-customers-list',
+					'parent' => 'site-name',
+					'title'  => __( 'Customers', self::$plugin_slug ),
+					'href'   => admin_url( 'admin.php?page=wc-customers-list' )
+				)
+			);
+		}
 	}
 }

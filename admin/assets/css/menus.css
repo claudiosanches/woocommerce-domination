@@ -1,10 +1,18 @@
 /**
  * Custom admin menu icons.
  */
+#wp-admin-bar-wc-orders .ab-icon:before,
+#wp-admin-bar-wc-reports .ab-icon:before {
+	font-size: 16px;
+	top: 0;
+}
+
+#wp-admin-bar-wc-orders .ab-icon:before,
 #adminmenu #toplevel_page_edit-post_type-shop_order div.wp-menu-image:before {
 	content: "\f163";
 }
 
+#wp-admin-bar-wc-reports .ab-icon:before,
 #adminmenu #toplevel_page_wc-reports div.wp-menu-image:before {
 	content: "\f239";
 }

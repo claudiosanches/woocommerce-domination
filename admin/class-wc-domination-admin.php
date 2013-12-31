@@ -151,9 +151,6 @@ class WC_Domination_Admin {
 		// Remove dashboard widgets.
 		add_action( 'wp_dashboard_setup', array( $this, 'remove_dashboard_widgets' ) );
 
-		// Admin bar.
-		add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar' ) );
-
 		// Remove core posts menu.
 		add_action( 'admin_menu', array( $this, 'remove_core_posts_menu' ) );
 	}
@@ -170,19 +167,6 @@ class WC_Domination_Admin {
 		remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
 		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
 		remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
-	}
-
-	/**
-	 * Custom admin bar.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function admin_bar() {
-		global $wp_admin_bar;
-
-		$wp_admin_bar->remove_menu( 'new-post' );
 	}
 
 	/**
@@ -396,7 +380,7 @@ class WC_Domination_Admin {
 	 * @return null Return early if no settings page is registered.
 	 */
 	public function enqueue_admin_scripts() {
-		wp_enqueue_style( 'woocommerce-domination-admin', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), null );
+		wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'assets/css/menus.css', __FILE__ ), array(), WC_Domination::VERSION );
 	}
 
 	/**
