@@ -34,6 +34,15 @@ class WooCommerce_Domination {
 	protected static $plugin_slug = 'woocommerce-domination';
 
 	/**
+	 * Plugin options name.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var   string
+	 */
+	protected static $options_name = 'woocommerce_domination';
+
+	/**
 	 * Instance of this class.
 	 *
 	 * @since 1.0.0
@@ -76,8 +85,19 @@ class WooCommerce_Domination {
 	 *
 	 * @return Plugin slug variable.
 	 */
-	public function get_plugin_slug() {
+	public static function get_plugin_slug() {
 		return self::$plugin_slug;
+	}
+
+	/**
+	 * Return the plugin options name.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return Plugin options name variable.
+	 */
+	public static function get_options_name() {
+		return self::$options_name;
 	}
 
 	/**

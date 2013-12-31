@@ -28,6 +28,7 @@ class WooCommerce_Domination_Admin {
 	 * Initialize the plugin.
 	 */
 	private function __construct() {
+		$this->plugin_slug = WooCommerce_Domination::get_plugin_slug();
 
 		// Remove Welcome Panel.
 		remove_action( 'welcome_panel', 'wp_welcome_panel' );
@@ -153,16 +154,16 @@ class WooCommerce_Domination_Admin {
 
 		// Change wc-reports location.
 		remove_submenu_page( 'woocommerce', 'wc-reports' );
-		add_menu_page( __( 'Reports', 'woocommerce' ),  __( 'Reports', 'woocommerce' ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ) );
+		add_menu_page( __( 'Reports', $this->plugin_slug ),  __( 'Reports', $this->plugin_slug ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ) );
 
 		// Add custom orders menu.
-		$orders_menu_name = _x( 'Orders', 'Admin menu name', 'woocommerce' );
+		$orders_menu_name = _x( 'Orders', 'Admin menu name', $this->plugin_slug );
 		if ( $order_count = wc_processing_order_count() ) {
 			$orders_menu_name .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n( $order_count ) . '</span></span>';
 		}
 		add_menu_page( $orders_menu_name, $orders_menu_name, 'manage_woocommerce', 'edit.php?post_type=shop_order' );
 
-		add_menu_page( __( 'Customers' ), __( 'Customers' ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), '', '55.9' );
+		add_menu_page( __( 'Customers', $this->plugin_slug ), __( 'Customers', $this->plugin_slug ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ) );
 	}
 
 	/**
