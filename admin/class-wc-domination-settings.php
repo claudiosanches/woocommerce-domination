@@ -202,6 +202,8 @@ class WC_Domination_Settings {
 	/**
 	 * Valid options.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @param  array $input options to valid.
 	 *
 	 * @return array        validated options.

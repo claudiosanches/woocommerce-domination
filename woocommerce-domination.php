@@ -32,7 +32,7 @@ require_once plugin_dir_path( __FILE__ ) . 'public/class-wc-domination.php';
 add_action( 'plugins_loaded', array( 'WC_Domination', 'get_instance' ) );
 
 /**
- * PLugin activate and deactivate methods.
+ * Plugin activate and deactivate methods.
  */
 register_activation_hook( __FILE__, array( 'WC_Domination', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'WC_Domination', 'deactivate' ) );

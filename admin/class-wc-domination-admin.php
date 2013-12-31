@@ -400,6 +400,8 @@ class WC_Domination_Admin {
 	/**
 	 * Customers list page.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @return string
 	 */
 	public function customers_list_page() {
@@ -411,6 +413,8 @@ class WC_Domination_Admin {
 
 	/**
 	 * Display a notice when WooCommerce is deactivated.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @return string Admin notice.
 	 */

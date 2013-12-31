@@ -231,7 +231,7 @@ class WC_Domination {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since  2.8.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -246,6 +246,8 @@ class WC_Domination {
 	/**
 	 * Initialize front end actions.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @return void
 	 */
 	public function front_end_actions() {
@@ -258,6 +260,8 @@ class WC_Domination {
 
 	/**
 	 * Test with WooCommerce is activated.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @return bool
 	 */
