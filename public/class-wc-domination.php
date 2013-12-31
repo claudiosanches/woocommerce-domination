@@ -216,7 +216,7 @@ class WC_Domination {
 	 * @since 1.0.0
 	 */
 	private static function single_activate() {
-
+		add_option( self::get_options_name(), array( 'core_features' => 'none' ) );
 	}
 
 	/**
@@ -225,7 +225,7 @@ class WC_Domination {
 	 * @since 1.0.0
 	 */
 	private static function single_deactivate() {
-
+		delete_option( self::get_options_name() );
 	}
 
 	/**
