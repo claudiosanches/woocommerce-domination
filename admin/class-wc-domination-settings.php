@@ -119,7 +119,7 @@ class WC_Domination_Settings {
 			array(
 				'menu'        => $option,
 				'id'          => 'core_features',
-				'description' => __( 'This option controls the visibility of the WordPress native posts.', $this->plugin_slug ),
+				'description' => __( 'Use this option to controls the visibility of the WordPress native posts.', $this->plugin_slug ) . '<br />' . __( 'This option will hide the posts and dashboard widgets in WordPress admin.', $this->plugin_slug ) . '<br />' . __( 'The "Hidden for all" will also remove widgets and anything linked to the WordPress posts.', $this->plugin_slug ),
 				'options'     => array(
 					'none'     => __( 'Do nothing', $this->plugin_slug ),
 					'managers' => __( 'Hidden only to shop managers', $this->plugin_slug ),

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Domination v1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-12-31 05:53:59+0000\n"
+"PO-Revision-Date: 2013-12-31 06:01:57+0000\n"
 "Last-Translator: Claudio Sanches <contato@claudiosmweb.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -69,11 +69,6 @@ msgstr "Configurações:"
 #@ woocommerce-domination
 msgid "Remove Core Posts features:"
 msgstr "Remover Posts do WordPress:"
-
-#: admin/class-wc-domination-settings.php:122
-#@ woocommerce-domination
-msgid "This option controls the visibility of the WordPress native posts."
-msgstr "Esta opção controla a visibilidade dos posts nativos do WordPress."
 
 #: admin/class-wc-domination-settings.php:124
 #@ woocommerce-domination
@@ -143,4 +138,19 @@ msgstr "1.0.0"
 #@ woocommerce-domination
 msgid "The %s plugin must be active for the WooCommerce Domination to work."
 msgstr "O plugin %s precisa estar ativado para que o WooCommerce Domination possa funcionar."
+
+#: admin/class-wc-domination-settings.php:122
+#@ woocommerce-domination
+msgid "Use this option to controls the visibility of the WordPress native posts."
+msgstr "Utilize esta opção para controlar a visibilidade dos posts nativos do WordPress."
+
+#: admin/class-wc-domination-settings.php:122
+#@ woocommerce-domination
+msgid "This option will hide the posts and dashboard widgets in WordPress admin."
+msgstr "Esta opção irá ocultar os posts e widgets do painel no administrador do WordPress."
+
+#: admin/class-wc-domination-settings.php:122
+#@ woocommerce-domination
+msgid "The \"Hidden for all\" will also remove widgets and anything linked to the WordPress posts."
+msgstr "A opção \"Ocultar para todos\" também irá remover widgets e qualquer coisa ligada aos posts do WordPress."
 
