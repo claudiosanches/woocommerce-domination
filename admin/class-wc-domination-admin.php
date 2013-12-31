@@ -70,9 +70,11 @@ class WC_Domination_Admin {
 	 * @return void
 	 */
 	public function init_admin_settings() {
-		require_once plugin_dir_path( __FILE__ ) . 'class-wc-domination-settings.php';
+		if ( apply_filters( 'woocommerce_domination_options_page', true ) ) {
+			require_once plugin_dir_path( __FILE__ ) . 'class-wc-domination-settings.php';
 
-		WC_Domination_Settings::init();
+			WC_Domination_Settings::init();
+		}
 	}
 
 	/**
