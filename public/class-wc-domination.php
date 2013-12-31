@@ -104,6 +104,19 @@ class WC_Domination {
 	}
 
 	/**
+	 * Get plugin options.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return array Plugin options.
+	 */
+	public static function get_plugin_options() {
+		$options = get_option( self::get_options_name() );
+
+		return apply_filters( 'woocommerce_domination_options', $options );
+	}
+
+	/**
 	 * Fired when the plugin is activated.
 	 *
 	 * @since  1.0.0

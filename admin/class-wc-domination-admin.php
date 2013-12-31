@@ -29,7 +29,7 @@ class WC_Domination_Admin {
 	 */
 	private function __construct() {
 		$this->plugin_slug = WC_Domination::get_plugin_slug();
-		$this->settings    = get_option( WC_Domination::get_options_name() );
+		$this->settings    = WC_Domination::get_plugin_options();
 
 		if ( ! WC_Domination::has_woocommerce_activated() ) {
 			add_action( 'admin_notices', array( $this, 'woocommerce_fallback_notice' ) );

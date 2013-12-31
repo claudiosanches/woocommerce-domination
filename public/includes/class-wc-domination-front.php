@@ -59,7 +59,7 @@ class WC_Domination_Front {
 			return;
 		}
 
-		$settings = get_option( WC_Domination::get_options_name() );
+		$settings = WC_Domination::get_plugin_options();
 
 		if ( 'all' == $settings['core_features'] ) {
 			// Post and comment feeds.
