@@ -405,6 +405,6 @@ class WC_Domination_Admin {
 	 * @return string Admin notice.
 	 */
 	public function woocommerce_fallback_notice() {
-		echo '<div class="error"><p><strong>' . __( 'WooCommerce Domination is inactive.', $this->plugin_slug ) . '</strong> ' . sprintf( __( 'The %s plugin must be active for the WooCommerce Subscriptions to work.', $this->plugin_slug ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">' . __( 'WooCommerce', $this->plugin_slug ) . '</a>' ) . '</p></div>';
+		echo '<div class="error"><p><strong>' . __( 'WooCommerce Domination is inactive.', $this->plugin_slug ) . '</strong> ' . sprintf( __( 'The %s plugin must be active for the WooCommerce Domination to work.', $this->plugin_slug ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">' . __( 'WooCommerce', $this->plugin_slug ) . '</a>' ) . '</p></div>';
 	}
 }
