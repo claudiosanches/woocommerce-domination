@@ -28,19 +28,19 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Public.
  */
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-woocommerce-domination.php' );
-add_action( 'plugins_loaded', array( 'WooCommerce_Domination', 'get_instance' ) );
+require_once plugin_dir_path( __FILE__ ) . 'public/class-wc-domination.php';
+add_action( 'plugins_loaded', array( 'WC_Domination', 'get_instance' ) );
 
 /**
  * PLugin activate and deactivate methods.
  */
-register_activation_hook( __FILE__, array( 'WooCommerce_Domination', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'WooCommerce_Domination', 'deactivate' ) );
+register_activation_hook( __FILE__, array( 'WC_Domination', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'WC_Domination', 'deactivate' ) );
 
 /**
  * Admin.
  */
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
-	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-woocommerce-domination-admin.php' );
-	add_action( 'plugins_loaded', array( 'WooCommerce_Domination_Admin', 'get_instance' ) );
+	require_once plugin_dir_path( __FILE__ ) . 'admin/class-wc-domination-admin.php';
+	add_action( 'plugins_loaded', array( 'WC_Domination_Admin', 'get_instance' ), 999 );
 }

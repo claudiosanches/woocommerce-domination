@@ -10,17 +10,17 @@
 /**
  * Plugin admin class.
  *
- * @package WooCommerce_Domination_Admin
+ * @package WC_Domination_Admin
  * @author  Claudio Sanches <contato@claudiosmweb.com>
  */
-class WooCommerce_Domination_Admin {
+class WC_Domination_Admin {
 
 	/**
 	 * Instance of this class.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var object
+	 * @var   object
 	 */
 	protected static $instance = null;
 
@@ -28,25 +28,19 @@ class WooCommerce_Domination_Admin {
 	 * Initialize the plugin.
 	 */
 	private function __construct() {
-		$this->plugin_slug = WooCommerce_Domination::get_plugin_slug();
+		$this->plugin_slug = WC_Domination::get_plugin_slug();
+		$this->settings    = get_option( WC_Domination::get_options_name() );
 
-		// Remove Welcome Panel.
-		remove_action( 'welcome_panel', 'wp_welcome_panel' );
+		if ( ! WC_Domination::has_woocommerce_activated() ) {
+			add_action( 'admin_notices', array( $this, 'woocommerce_fallback_notice' ) );
+			return;
+		}
 
-		// Remove dashboard widgets.
-		add_action( 'wp_dashboard_setup', array( $this, 'remove_dashboard_widgets' ) );
+		// Plugin settings.
+		$this->init_admin_settings();
 
-		// Admin bar.
-		add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar' ) );
-
-		// Remove not useful widgets.
-		// add_action( 'widgets_init', array( $this, 'unregister_posts_widgets' ), 11 );
-
-		// Remove help tabs.
-		add_action( 'admin_head', array( $this, 'remove_help_tabs' ) );
-
-		// Custom users screens.
-		add_filter( 'manage_users_columns', array( $this, 'custom_users_columns' ) );
+		// Run options.
+		$this->options_switch();
 
 		// Actions only for shop managers and admins.
 		$this->init_woocommerce_actions();
@@ -55,7 +49,7 @@ class WooCommerce_Domination_Admin {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 *
 	 * @return object A single instance of this class.
 	 */
@@ -69,7 +63,22 @@ class WooCommerce_Domination_Admin {
 	}
 
 	/**
+	 * Initialize plugin settings.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function init_admin_settings() {
+		require_once plugin_dir_path( __FILE__ ) . 'class-wc-domination-settings.php';
+
+		WC_Domination_Settings::init();
+	}
+
+	/**
 	 * Initialize WooCommerce custom actions only for shop managers.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -97,7 +106,60 @@ class WooCommerce_Domination_Admin {
 	}
 
 	/**
+	 * Run plugin options.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function options_switch() {
+		if ( 'all' == $this->settings['core_features'] ) {
+			// Remove not useful widgets.
+			add_action( 'widgets_init', array( $this, 'unregister_posts_widgets' ), 11 );
+
+			// Custom users screens.
+			add_filter( 'manage_users_columns', array( $this, 'custom_users_columns' ) );
+
+			// Remove core posts features.
+			$this->core_posts();
+		} else if (
+			'managers' == $this->settings['core_features'] &&
+			current_user_can( 'manage_woocommerce' ) &&
+			! current_user_can( 'manage_options' )
+		) {
+			// Remove core posts features.
+			$this->core_posts();
+		}
+	}
+
+	/**
+	 * Core posts actions.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function core_posts() {
+		// Remove help tabs.
+		add_action( 'admin_head', array( $this, 'remove_help_tabs' ) );
+
+		// Remove Welcome Panel.
+		remove_action( 'welcome_panel', 'wp_welcome_panel' );
+
+		// Remove dashboard widgets.
+		add_action( 'wp_dashboard_setup', array( $this, 'remove_dashboard_widgets' ) );
+
+		// Admin bar.
+		add_action( 'wp_before_admin_bar_render', array( $this, 'admin_bar' ) );
+
+		// Remove core posts menu.
+		add_action( 'admin_menu', array( $this, 'remove_core_posts_menu' ) );
+	}
+
+	/**
 	 * Remove dashboard widgets.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -111,17 +173,20 @@ class WooCommerce_Domination_Admin {
 	/**
 	 * Custom admin bar.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @return void
 	 */
 	public function admin_bar() {
 		global $wp_admin_bar;
 
-		$wp_admin_bar->remove_menu( 'comments' );
 		$wp_admin_bar->remove_menu( 'new-post' );
 	}
 
 	/**
 	 * Remove widgets.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -140,6 +205,8 @@ class WooCommerce_Domination_Admin {
 	/**
 	 * Remove menu items.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @return void
 	 */
 	public function admin_menu() {
@@ -148,9 +215,6 @@ class WooCommerce_Domination_Admin {
 		$wc_admin_menus = new WC_Admin_Menus;
 		$menu[] = array( '', 'read', 'separator-wc-domination1', '', 'wp-not-current-submenu wp-menu-separator' );
 		$menu[] = array( '', 'read', 'separator-wc-domination2', '', 'wp-not-current-submenu wp-menu-separator' );
-
-		// Remove not useful menus.
-		// remove_menu_page( 'edit.php' );
 
 		// Change wc-reports location.
 		remove_submenu_page( 'woocommerce', 'wc-reports' );
@@ -167,7 +231,20 @@ class WooCommerce_Domination_Admin {
 	}
 
 	/**
+	 * Remove core posts menu.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function remove_core_posts_menu() {
+		remove_menu_page( 'edit.php' );
+	}
+
+	/**
 	 * Custom WooCommerce screen ids.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @param  array $ids Default screen ids.
 	 *
@@ -183,6 +260,8 @@ class WooCommerce_Domination_Admin {
 	/**
 	 * Custom shop order arguments.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @param  array $args Post type arguments.
 	 *
 	 * @return array       Fixed show_in_menu item.
@@ -196,6 +275,8 @@ class WooCommerce_Domination_Admin {
 	/**
 	 * Custom shop coupon arguments.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @param  array $args Post type arguments.
 	 *
 	 * @return array       Fixed show_in_menu item.
@@ -208,6 +289,8 @@ class WooCommerce_Domination_Admin {
 
 	/**
 	 * Fixed shop order highlight.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -224,6 +307,8 @@ class WooCommerce_Domination_Admin {
 
 	/**
 	 * Menu order.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @param  array $menu_order Current menu order.
 	 *
@@ -274,6 +359,8 @@ class WooCommerce_Domination_Admin {
 	/**
 	 * Remove help tabs.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @return void
 	 */
 	public function remove_help_tabs() {
@@ -286,6 +373,8 @@ class WooCommerce_Domination_Admin {
 
 	/**
 	 * Custom users columns.
+	 *
+	 * @since  1.0.0
 	 *
 	 * @param  array $columns Default columns.
 	 *
@@ -300,16 +389,32 @@ class WooCommerce_Domination_Admin {
 	/**
 	 * Register and enqueue admin-specific JavaScript.
 	 *
+	 * @since  1.0.0
+	 *
 	 * @return null Return early if no settings page is registered.
 	 */
 	public function enqueue_admin_scripts() {
 		wp_enqueue_style( 'woocommerce-domination-admin', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), null );
 	}
 
+	/**
+	 * Customers list page.
+	 *
+	 * @return string
+	 */
 	public function customers_list_page() {
 		include_once WC()->plugin_path() . '/includes/admin/reports/class-wc-report-customer-list.php';
 
 		$report = new WC_Report_Customer_List();
 		$report->output_report();
+	}
+
+	/**
+	 * Display a notice when WooCommerce is deactivated.
+	 *
+	 * @return string Admin notice.
+	 */
+	public function woocommerce_fallback_notice() {
+		echo '<div class="error"><p><strong>' . __( 'WooCommerce Domination is inactive.', $this->plugin_slug ) . '</strong> ' . sprintf( __( 'The %s plugin must be active for the WooCommerce Subscriptions to work.', $this->plugin_slug ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">' . __( 'WooCommerce', $this->plugin_slug ) . '</a>' ) . '</p></div>';
 	}
 }

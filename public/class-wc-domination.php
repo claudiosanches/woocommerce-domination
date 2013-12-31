@@ -10,10 +10,10 @@
 /**
  * Plugin admin class.
  *
- * @package WooCommerce_Domination
+ * @package WC_Domination
  * @author  Claudio Sanches <contato@claudiosmweb.com>
  */
-class WooCommerce_Domination {
+class WC_Domination {
 
 	/**
 	 * Plugin version, used for cache-busting of style and script file references.
@@ -60,6 +60,9 @@ class WooCommerce_Domination {
 
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
+
+		// Front end actions.
+		$this->front_end_actions();
 	}
 
 	/**
@@ -241,11 +244,24 @@ class WooCommerce_Domination {
 	}
 
 	/**
+	 * Initialize front end actions.
+	 *
+	 * @return void
+	 */
+	public function front_end_actions() {
+		if ( self::has_woocommerce_activated() ) {
+			require_once plugin_dir_path( __FILE__ ) . 'includes/class-wc-domination-front.php';
+
+			WC_Domination_Front::init();
+		}
+	}
+
+	/**
 	 * Test with WooCommerce is activated.
 	 *
 	 * @return bool
 	 */
-	public static function is_woocommerce() {
+	public static function has_woocommerce_activated() {
 		if ( function_exists( 'WC' ) ) {
 			return true;
 		}
