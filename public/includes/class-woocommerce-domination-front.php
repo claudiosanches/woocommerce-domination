@@ -55,6 +55,10 @@ class WooCommerce_Domination_Front {
 	 * @return void
 	 */
 	public function wp_head_cleanup() {
+		if ( is_admin() ) {
+			return;
+		}
+
 		// Post and comment feeds.
 		remove_action( 'wp_head', 'feed_links', 2 );
 
