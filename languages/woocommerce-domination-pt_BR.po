@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Domination v1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-12-31 06:01:57+0000\n"
+"PO-Revision-Date: 2013-12-31 15:48:36+0000\n"
 "Last-Translator: Claudio Sanches <contato@claudiosmweb.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,7 @@ msgstr "Não fazer nada"
 #: admin/class-wc-domination-settings.php:125
 #@ woocommerce-domination
 msgid "Hidden only to shop managers"
-msgstr "Ocultar apenas dos gerentes da loja"
+msgstr "Ocultar apenas para os gerentes de loja"
 
 #: admin/class-wc-domination-settings.php:126
 #@ woocommerce-domination
@@ -108,12 +108,6 @@ msgstr "ver relatórios"
 #@ woocommerce-domination
 msgid "https://github.com/claudiosmweb/woocommerce-domination"
 msgstr "https://github.com/claudiosmweb/woocommerce-domination"
-
-#. translators: plugin header field 'Description'
-#: woocommerce-domination.php:0
-#@ woocommerce-domination
-msgid "Let the WooCommerce take care of your WordPress transforming him a complete store."
-msgstr "Deixe o WooCommerce tomar conta do seu WordPress, transformando ele em uma loja completa."
 
 #. translators: plugin header field 'Author'
 #: woocommerce-domination.php:0
@@ -153,4 +147,10 @@ msgstr "Esta opção irá ocultar os posts e widgets do painel no administrador 
 #@ woocommerce-domination
 msgid "The \"Hidden for all\" will also remove widgets and anything linked to the WordPress posts."
 msgstr "A opção \"Ocultar para todos\" também irá remover widgets e qualquer coisa ligada aos posts do WordPress."
+
+#. translators: plugin header field 'Description'
+#: woocommerce-domination.php:0
+#@ woocommerce-domination
+msgid "Let the WooCommerce take the control of your WordPress admin."
+msgstr "Deixe o WooCommerce tomar o controle do painel de administração do WordPress."
 
