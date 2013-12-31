@@ -328,7 +328,7 @@ class WC_Domination {
 	 */
 	public function enqueue_scripts() {
 		if ( current_user_can( 'manage_woocommerce' ) ) {
-			wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'admin/assets/css/menus.css', plugin_dir_path( __FILE__ ) ), array(), self::VERSION );
+			wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'assets/css/menus.css', plugin_dir_path( __FILE__ ) ), array(), self::VERSION );
 		}
 	}
 
