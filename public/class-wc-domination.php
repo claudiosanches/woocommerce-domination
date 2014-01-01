@@ -61,14 +61,8 @@ class WC_Domination {
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
-		// Plugin actions.
-		$this->public_actions();
-
-		// Front-end actions.
-		$this->front_end_actions();
-
-		// Public scripts.
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		// Initialize the plugin public actions
+		$this->init();
 	}
 
 	/**
@@ -263,6 +257,26 @@ class WC_Domination {
 	}
 
 	/**
+	 * Initialize the plugin public actions.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return void
+	 */
+	public function init() {
+		if ( self::has_woocommerce_activated() ) {
+			// Plugin actions.
+			$this->public_actions();
+
+			// Front-end actions.
+			$this->front_end_actions();
+
+			// Public scripts.
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		}
+	}
+
+	/**
 	 * Initialize front end actions.
 	 *
 	 * @since  1.0.0
@@ -270,11 +284,9 @@ class WC_Domination {
 	 * @return void
 	 */
 	public function front_end_actions() {
-		if ( self::has_woocommerce_activated() ) {
-			require_once plugin_dir_path( __FILE__ ) . 'includes/class-wc-domination-front.php';
+		require_once plugin_dir_path( __FILE__ ) . 'includes/class-wc-domination-front.php';
 
-			WC_Domination_Front::init();
-		}
+		WC_Domination_Front::init();
 	}
 
 	/**
