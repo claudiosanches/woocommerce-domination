@@ -7,20 +7,6 @@
 	top: 0;
 }
 
-#wp-admin-bar-wc-orders .ab-icon:before,
-#adminmenu #toplevel_page_edit-post_type-shop_order div.wp-menu-image:before {
-	content: "\f163";
-}
-
-#wp-admin-bar-wc-reports .ab-icon:before,
-#adminmenu #toplevel_page_wc-reports div.wp-menu-image:before {
-	content: "\f239";
-}
-
-#adminmenu #menu-posts-shop_coupon div.wp-menu-image:before {
-	content: "\f323";
-}
-
-#adminmenu #toplevel_page_wc-customers-list div.wp-menu-image:before {
-	content: "\f307";
+#adminmenu #menu-posts-shop_coupon div.wp-menu-image {
+	background-image: none;
 }

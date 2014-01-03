@@ -364,10 +364,10 @@ class WC_Domination {
 	 */
 	public function admin_bar( $wp_admin_bar ) {
 		// Orders.
-		$orders_menu_count = '<span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0">0</span>';
+		$orders_menu_count = '<span class="ab-icon dashicons-list-view"></span><span class="ab-label awaiting-mod pending-count count-0">0</span>';
 		$order_menu_title  = __( 'Orders', self::$plugin_slug );
 		if ( $order_count = wc_processing_order_count() ) {
-			$orders_menu_count = '<span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-' . $order_count . '">' . number_format_i18n( $order_count ) . '</span>';
+			$orders_menu_count = '<span class="ab-icon dashicons-list-view"></span><span class="ab-label awaiting-mod pending-count count-' . $order_count . '">' . number_format_i18n( $order_count ) . '</span>';
 			$order_menu_title  = sprintf( _n( '%d order pending', '%d orders pending', $order_count, self::$plugin_slug ), $order_count );
 		}
 
@@ -386,7 +386,7 @@ class WC_Domination {
 		$wp_admin_bar->add_node(
 			array(
 				'id'    => 'wc-reports',
-				'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Reports', self::$plugin_slug ) . '</span>',
+				'title' => '<span class="ab-icon dashicons-chart-area"></span><span class="ab-label">' . __( 'Reports', self::$plugin_slug ) . '</span>',
 				'meta'  => array(
 					'title' => __( 'view reports', self::$plugin_slug )
 				),

@@ -202,18 +202,19 @@ class WC_Domination_Admin {
 		$menu[] = array( '', 'read', 'separator-wc-domination1', '', 'wp-not-current-submenu wp-menu-separator' );
 		$menu[] = array( '', 'read', 'separator-wc-domination2', '', 'wp-not-current-submenu wp-menu-separator' );
 
-		// Change wc-reports location.
-		remove_submenu_page( 'woocommerce', 'wc-reports' );
-		add_menu_page( __( 'Reports', $this->plugin_slug ),  __( 'Reports', $this->plugin_slug ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ) );
-
 		// Add custom orders menu.
 		$orders_menu_name = _x( 'Orders', 'Admin menu name', $this->plugin_slug );
 		if ( $order_count = wc_processing_order_count() ) {
 			$orders_menu_name .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n( $order_count ) . '</span></span>';
 		}
-		add_menu_page( $orders_menu_name, $orders_menu_name, 'manage_woocommerce', 'edit.php?post_type=shop_order' );
+		add_menu_page( $orders_menu_name, $orders_menu_name, 'manage_woocommerce', 'edit.php?post_type=shop_order', '', 'dashicons-list-view' );
 
-		add_menu_page( __( 'Customers', $this->plugin_slug ), __( 'Customers', $this->plugin_slug ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ) );
+		// Change wc-reports location.
+		remove_submenu_page( 'woocommerce', 'wc-reports' );
+		add_menu_page( __( 'Reports', $this->plugin_slug ),  __( 'Reports', $this->plugin_slug ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ), 'dashicons-chart-area' );
+
+		// Add customers menu.
+		add_menu_page( __( 'Customers', $this->plugin_slug ), __( 'Customers', $this->plugin_slug ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), 'dashicons-groups' );
 	}
 
 	/**
@@ -269,6 +270,7 @@ class WC_Domination_Admin {
 	 */
 	public function custom_post_type_shop_coupon( $args ) {
 		$args['show_in_menu'] = true;
+		$args['menu_icon']    = 'dashicons-tag';
 
 		return $args;
 	}
