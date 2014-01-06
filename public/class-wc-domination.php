@@ -396,7 +396,7 @@ class WC_Domination {
 
 		// General.
 		if ( ! is_admin() ) {
-			$wp_admin_bar->add_menu(
+			$wp_admin_bar->add_node(
 				array(
 					'id'     => 'wc-customers-list',
 					'parent' => 'site-name',
