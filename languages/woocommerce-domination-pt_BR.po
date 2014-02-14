@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Domination v1.0.0-beta\n"
+"Project-Id-Version: WooCommerce Domination v1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-01-01 22:31:18+0000\n"
+"PO-Revision-Date: 2014-02-14 19:30:44+0000\n"
 "Last-Translator: Claudio Sanches <contato@claudiosmweb.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,77 +20,46 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: admin/class-wc-domination-admin.php:207
-#: public/class-wc-domination.php:389
+#: includes/admin/class-wc-domination-admin.php:112
+#: includes/class-wc-domination.php:176
 #@ woocommerce-domination
 msgid "Reports"
 msgstr "Relatórios"
 
-#: admin/class-wc-domination-admin.php:210
+#: includes/admin/class-wc-domination-admin.php:104
 #@ woocommerce-domination
 msgctxt "Admin menu name"
 msgid "Orders"
 msgstr "Pedidos"
 
-#: admin/class-wc-domination-admin.php:216
-#: public/class-wc-domination.php:403
+#: includes/admin/class-wc-domination-admin.php:115
+#: includes/class-wc-domination.php:190
 #@ woocommerce-domination
 msgid "Customers"
 msgstr "Clientes"
 
-#: admin/class-wc-domination-admin.php:408
+#: includes/admin/class-wc-domination-admin.php:268
 #@ woocommerce-domination
 msgid "WooCommerce Domination is inactive."
 msgstr "WooCommerce Domination esta desativado."
 
-#: admin/class-wc-domination-admin.php:408
+#: includes/admin/class-wc-domination-admin.php:268
 #@ woocommerce-domination
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
 #. translators: plugin header field 'Name'
-#: admin/class-wc-domination-settings.php:75
 #: woocommerce-domination.php:0
 #@ woocommerce-domination
 msgid "WooCommerce Domination"
 msgstr "WooCommerce Domination"
 
-#: admin/class-wc-domination-settings.php:76
-#@ woocommerce-domination
-msgid "WC Domination"
-msgstr "WC Domination"
-
-#: admin/class-wc-domination-settings.php:107
-#@ woocommerce-domination
-msgid "Settings:"
-msgstr "Configurações:"
-
-#: admin/class-wc-domination-settings.php:115
-#@ woocommerce-domination
-msgid "Remove Core Posts features:"
-msgstr "Remover Posts do WordPress:"
-
-#: admin/class-wc-domination-settings.php:124
-#@ woocommerce-domination
-msgid "Do nothing"
-msgstr "Não fazer nada"
-
-#: admin/class-wc-domination-settings.php:125
-#@ woocommerce-domination
-msgid "Hidden only to shop managers"
-msgstr "Ocultar apenas para os gerentes de loja"
-
-#: admin/class-wc-domination-settings.php:126
-#@ woocommerce-domination
-msgid "Hidden for all"
-msgstr "Ocultar para todos"
-
-#: public/class-wc-domination.php:368
+#: includes/class-wc-domination.php:155
 #@ woocommerce-domination
 msgid "Orders"
 msgstr "Pedidos"
 
-#: public/class-wc-domination.php:371
+#: includes/class-wc-domination.php:158
 #, php-format
 #@ woocommerce-domination
 msgid "%d order pending"
@@ -98,7 +67,7 @@ msgid_plural "%d orders pending"
 msgstr[0] "%d pedido pendente"
 msgstr[1] "%d pedidos pendentes"
 
-#: public/class-wc-domination.php:391
+#: includes/class-wc-domination.php:178
 #@ woocommerce-domination
 msgid "view reports"
 msgstr "ver relatórios"
@@ -121,36 +90,21 @@ msgstr "claudiosanches"
 msgid "http://claudiosmweb.com/"
 msgstr "http://claudiosmweb.com/"
 
-#: admin/class-wc-domination-settings.php:122
-#@ woocommerce-domination
-msgid "Use this option to controls the visibility of the WordPress native posts."
-msgstr "Utilize esta opção para controlar a visibilidade dos posts nativos do WordPress."
-
-#: admin/class-wc-domination-settings.php:122
-#@ woocommerce-domination
-msgid "This option will hide the posts and dashboard widgets in WordPress admin."
-msgstr "Esta opção irá ocultar os posts e widgets do painel no administrador do WordPress."
-
-#: admin/class-wc-domination-settings.php:122
-#@ woocommerce-domination
-msgid "The \"Hidden for all\" will also remove widgets and anything linked to the WordPress posts."
-msgstr "A opção \"Ocultar para todos\" também irá remover widgets e qualquer coisa ligada aos posts do WordPress."
-
-#. translators: plugin header field 'Description'
-#: woocommerce-domination.php:0
-#@ woocommerce-domination
-msgid "Let the WooCommerce take the control of your WordPress admin."
-msgstr "Deixe o WooCommerce tomar o controle do painel de administração do WordPress."
-
-#: admin/class-wc-domination-admin.php:408
+#: includes/admin/class-wc-domination-admin.php:268
 #, php-format
 #@ woocommerce-domination
 msgid "You must install and active the %s 2.1 or later for the WooCommerce Domination work."
 msgstr "Você precisa instalar e ativar o %s 2.1 ou superior para que o WooCommerce Domination funcione."
 
+#. translators: plugin header field 'Description'
+#: woocommerce-domination.php:0
+#@ woocommerce-domination
+msgid "Allows the WooCommerce take the control of your WordPress admin."
+msgstr "Permite o WooCommerce tomar o controle do administrador do seu WordPress."
+
 #. translators: plugin header field 'Version'
 #: woocommerce-domination.php:0
 #@ woocommerce-domination
-msgid "1.0.0-beta"
-msgstr ""
+msgid "1.0.0"
+msgstr "1.0.0"
 
