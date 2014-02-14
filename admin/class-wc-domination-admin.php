@@ -29,21 +29,14 @@ class WC_Domination_Admin {
 	 */
 	private function __construct() {
 		$this->plugin_slug = WC_Domination::get_plugin_slug();
-		$this->settings    = WC_Domination::get_plugin_options();
 
 		if ( ! WC_Domination::has_woocommerce_activated() ) {
 			add_action( 'admin_notices', array( $this, 'woocommerce_fallback_notice' ) );
 			return;
 		}
 
-		// Plugin settings.
-		$this->init_admin_settings();
-
-		// Run options.
-		$this->options_switch();
-
-		// Actions only for shop managers and admins.
-		$this->init_woocommerce_actions();
+		// Initialize plugin actions.
+		$this->init();
 	}
 
 	/**
@@ -63,28 +56,13 @@ class WC_Domination_Admin {
 	}
 
 	/**
-	 * Initialize plugin settings.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function init_admin_settings() {
-		if ( apply_filters( 'woocommerce_domination_options_page', true ) ) {
-			require_once plugin_dir_path( __FILE__ ) . 'class-wc-domination-settings.php';
-
-			WC_Domination_Settings::init();
-		}
-	}
-
-	/**
 	 * Initialize WooCommerce custom actions only for shop managers.
 	 *
 	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
-	public function init_woocommerce_actions() {
+	public function init() {
 		if ( current_user_can( 'manage_woocommerce' ) ) {
 
 			// Menus.
@@ -108,87 +86,6 @@ class WC_Domination_Admin {
 	}
 
 	/**
-	 * Run plugin options.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function options_switch() {
-		if ( 'all' == $this->settings['core_features'] ) {
-			// Remove not useful widgets.
-			add_action( 'widgets_init', array( $this, 'unregister_posts_widgets' ), 11 );
-
-			// Custom users screens.
-			add_filter( 'manage_users_columns', array( $this, 'custom_users_columns' ) );
-
-			// Remove core posts features.
-			$this->core_posts();
-		} else if (
-			'managers' == $this->settings['core_features'] &&
-			current_user_can( 'manage_woocommerce' ) &&
-			! current_user_can( 'manage_options' )
-		) {
-			// Remove core posts features.
-			$this->core_posts();
-		}
-	}
-
-	/**
-	 * Core posts actions.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function core_posts() {
-		// Remove help tabs.
-		add_action( 'admin_head', array( $this, 'remove_help_tabs' ) );
-
-		// Remove Welcome Panel.
-		remove_action( 'welcome_panel', 'wp_welcome_panel' );
-
-		// Remove dashboard widgets.
-		add_action( 'wp_dashboard_setup', array( $this, 'remove_dashboard_widgets' ) );
-
-		// Remove core posts menu.
-		add_action( 'admin_menu', array( $this, 'remove_core_posts_menu' ) );
-	}
-
-	/**
-	 * Remove dashboard widgets.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function remove_dashboard_widgets() {
-		remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
-		remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
-		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
-		remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
-	}
-
-	/**
-	 * Remove widgets.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function unregister_posts_widgets() {
-		unregister_widget( 'WP_Widget_Calendar' );
-		unregister_widget( 'WP_Widget_Archives' );
-		unregister_widget( 'WP_Widget_Links' );
-		unregister_widget( 'WP_Widget_Meta' );
-		unregister_widget( 'WP_Widget_Search' );
-		unregister_widget( 'WP_Widget_Categories' );
-		unregister_widget( 'WP_Widget_Recent_Posts' );
-		unregister_widget( 'WP_Widget_Recent_Comments' );
-		unregister_widget( 'WP_Widget_Tag_Cloud' );
-	}
-
-	/**
 	 * Remove menu items.
 	 *
 	 * @since  1.0.0
@@ -198,34 +95,25 @@ class WC_Domination_Admin {
 	public function admin_menu() {
 		global $menu;
 
-		$wc_admin_menus = new WC_Admin_Menus;
-		$menu[] = array( '', 'read', 'separator-wc-domination1', '', 'wp-not-current-submenu wp-menu-separator' );
-		$menu[] = array( '', 'read', 'separator-wc-domination2', '', 'wp-not-current-submenu wp-menu-separator' );
+		if ( class_exists( 'WC_Admin_Menus' ) ) {
+			$wc_admin_menus = new WC_Admin_Menus;
+			$menu[] = array( '', 'read', 'separator-wc-domination1', '', 'wp-not-current-submenu wp-menu-separator' );
+			$menu[] = array( '', 'read', 'separator-wc-domination2', '', 'wp-not-current-submenu wp-menu-separator' );
 
-		// Add custom orders menu.
-		$orders_menu_name = _x( 'Orders', 'Admin menu name', $this->plugin_slug );
-		if ( $order_count = wc_processing_order_count() ) {
-			$orders_menu_name .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n( $order_count ) . '</span></span>';
+			// Add custom orders menu.
+			$orders_menu_name = _x( 'Orders', 'Admin menu name', $this->plugin_slug );
+			if ( $order_count = wc_processing_order_count() ) {
+				$orders_menu_name .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n( $order_count ) . '</span></span>';
+			}
+			add_menu_page( $orders_menu_name, $orders_menu_name, 'manage_woocommerce', 'edit.php?post_type=shop_order', '', 'dashicons-list-view' );
+
+			// Change wc-reports location.
+			remove_submenu_page( 'woocommerce', 'wc-reports' );
+			add_menu_page( __( 'Reports', $this->plugin_slug ),  __( 'Reports', $this->plugin_slug ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ), 'dashicons-chart-area' );
+
+			// Add customers menu.
+			add_menu_page( __( 'Customers', $this->plugin_slug ), __( 'Customers', $this->plugin_slug ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), 'dashicons-groups' );
 		}
-		add_menu_page( $orders_menu_name, $orders_menu_name, 'manage_woocommerce', 'edit.php?post_type=shop_order', '', 'dashicons-list-view' );
-
-		// Change wc-reports location.
-		remove_submenu_page( 'woocommerce', 'wc-reports' );
-		add_menu_page( __( 'Reports', $this->plugin_slug ),  __( 'Reports', $this->plugin_slug ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ), 'dashicons-chart-area' );
-
-		// Add customers menu.
-		add_menu_page( __( 'Customers', $this->plugin_slug ), __( 'Customers', $this->plugin_slug ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), 'dashicons-groups' );
-	}
-
-	/**
-	 * Remove core posts menu.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function remove_core_posts_menu() {
-		remove_menu_page( 'edit.php' );
 	}
 
 	/**
@@ -342,36 +230,6 @@ class WC_Domination_Admin {
 		);
 
 		return $menu_order;
-	}
-
-	/**
-	 * Remove help tabs.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function remove_help_tabs() {
-		$screen = get_current_screen();
-
-		if ( 'dashboard' == $screen->id ) {
-			$screen->remove_help_tab( 'help-content' );
-		}
-	}
-
-	/**
-	 * Custom users columns.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  array $columns Default columns.
-	 *
-	 * @return array          Removed the posts column.
-	 */
-	function custom_users_columns( $columns ) {
-		unset( $columns['posts'] );
-
-		return $columns;
 	}
 
 	/**

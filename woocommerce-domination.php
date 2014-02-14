@@ -32,12 +32,6 @@ require_once plugin_dir_path( __FILE__ ) . 'public/class-wc-domination.php';
 add_action( 'plugins_loaded', array( 'WC_Domination', 'get_instance' ) );
 
 /**
- * Plugin activate and deactivate methods.
- */
-register_activation_hook( __FILE__, array( 'WC_Domination', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'WC_Domination', 'deactivate' ) );
-
-/**
  * Admin.
  */
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
