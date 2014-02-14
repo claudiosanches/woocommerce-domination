@@ -240,7 +240,7 @@ class WC_Domination_Admin {
 	 * @return null Return early if no settings page is registered.
 	 */
 	public function enqueue_admin_scripts() {
-		wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'assets/css/menus.css', plugin_dir_path( __FILE__ ) ), array(), WC_Domination::VERSION );
+		wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'assets/css/menus.css', plugin_dir_path( dirname( __FILE__ ) ) ), array(), WC_Domination::VERSION );
 	}
 
 	/**

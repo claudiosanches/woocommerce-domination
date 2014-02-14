@@ -28,13 +28,13 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Public.
  */
-require_once plugin_dir_path( __FILE__ ) . 'public/class-wc-domination.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-wc-domination.php';
 add_action( 'plugins_loaded', array( 'WC_Domination', 'get_instance' ) );
 
 /**
  * Admin.
  */
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
-	require_once plugin_dir_path( __FILE__ ) . 'admin/class-wc-domination-admin.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/admin/class-wc-domination-admin.php';
 	add_action( 'plugins_loaded', array( 'WC_Domination_Admin', 'get_instance' ), 999 );
 }
