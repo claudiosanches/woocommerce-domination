@@ -10,7 +10,7 @@
  * Plugin Name:       WooCommerce Domination
  * Plugin URI:        https://github.com/claudiosmweb/woocommerce-domination
  * Description:       Allows the WooCommerce take the control of your WordPress admin.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            claudiosanches
  * Author URI:        http://claudiosmweb.com/
  * Text Domain:       woocommerce-domination
