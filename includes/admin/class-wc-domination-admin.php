@@ -130,9 +130,9 @@ class WC_Domination_Admin {
 
 		foreach ( $submenu['woocommerce'] as $key => $items ) {
 			if ( in_array( 'wc-settings', $items ) ) {
-				$submenu_items[1] = $items;
-			} elseif ( in_array( 'toplevel_page_woocommerce', $items ) ) {
 				$submenu_items[0] = $items;
+			} elseif ( in_array( 'woocommerce', $items ) ) {
+				continue;
 			} else {
 				$submenu_items[ $woocommerce_order ] = $items;
 			}
