@@ -2,9 +2,9 @@
 **Contributors:** claudiosanches  
 **Donate link:** http://claudiosmweb.com/doacoes/  
 **Tags:** woocommerce, admin  
-**Requires at least:** 3.5  
-**Tested up to:** 3.9  
-**Stable tag:** 1.0.0  
+**Requires at least:** 3.8  
+**Tested up to:** 4.0  
+**Stable tag:** 1.1.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -31,10 +31,16 @@ This plugin only works with WooCommerce 2.1.x or later.
 ## Screenshots ##
 
 ### 1. WordPress admin. ###
-![1. WordPress admin.](http://s.wordpress.org/extend/plugins/woocommerce-domination/screenshot-1.png)
+![1. WordPress admin.](http://ps.w.org/woocommerce-domination/assets/screenshot-1.png)
 
 
 ## Changelog ##
+
+### 1.0.0 - 09/11/2014 ###
+
+* Fixed WooCommerce 2.2 support.
+* Improved the customers page.
+* Added ru_RU translation.
 
 ### 1.0.0 ###
 

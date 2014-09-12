@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Domination v1.0.0\n"
+"Project-Id-Version: WooCommerce Domination v1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-02-14 19:30:44+0000\n"
+"PO-Revision-Date: 2014-09-12 01:26:11+0000\n"
 "Last-Translator: Claudio Sanches <contato@claudiosmweb.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,30 +20,31 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: includes/admin/class-wc-domination-admin.php:112
-#: includes/class-wc-domination.php:176
+#: includes/admin/class-wc-domination-admin.php:53
+#: includes/class-wc-domination-admin-bar.php:47
 #@ woocommerce-domination
 msgid "Reports"
 msgstr "Relatórios"
 
-#: includes/admin/class-wc-domination-admin.php:104
+#: includes/admin/class-wc-domination-admin.php:45
 #@ woocommerce-domination
 msgctxt "Admin menu name"
 msgid "Orders"
 msgstr "Pedidos"
 
-#: includes/admin/class-wc-domination-admin.php:115
-#: includes/class-wc-domination.php:190
+#: includes/admin/class-wc-domination-admin.php:56
+#: includes/admin/class-wc-domination-admin.php:177
+#: includes/class-wc-domination-admin-bar.php:61
 #@ woocommerce-domination
 msgid "Customers"
 msgstr "Clientes"
 
-#: includes/admin/class-wc-domination-admin.php:268
+#: woocommerce-domination.php:122
 #@ woocommerce-domination
 msgid "WooCommerce Domination is inactive."
 msgstr "WooCommerce Domination esta desativado."
 
-#: includes/admin/class-wc-domination-admin.php:268
+#: woocommerce-domination.php:122
 #@ woocommerce-domination
 msgid "WooCommerce"
 msgstr "WooCommerce"
@@ -54,12 +55,12 @@ msgstr "WooCommerce"
 msgid "WooCommerce Domination"
 msgstr "WooCommerce Domination"
 
-#: includes/class-wc-domination.php:155
+#: includes/class-wc-domination-admin-bar.php:26
 #@ woocommerce-domination
 msgid "Orders"
 msgstr "Pedidos"
 
-#: includes/class-wc-domination.php:158
+#: includes/class-wc-domination-admin-bar.php:29
 #, php-format
 #@ woocommerce-domination
 msgid "%d order pending"
@@ -67,7 +68,7 @@ msgid_plural "%d orders pending"
 msgstr[0] "%d pedido pendente"
 msgstr[1] "%d pedidos pendentes"
 
-#: includes/class-wc-domination.php:178
+#: includes/class-wc-domination-admin-bar.php:49
 #@ woocommerce-domination
 msgid "view reports"
 msgstr "ver relatórios"
@@ -78,19 +79,13 @@ msgstr "ver relatórios"
 msgid "https://github.com/claudiosmweb/woocommerce-domination"
 msgstr "https://github.com/claudiosmweb/woocommerce-domination"
 
-#. translators: plugin header field 'Author'
-#: woocommerce-domination.php:0
-#@ woocommerce-domination
-msgid "claudiosanches"
-msgstr "claudiosanches"
-
 #. translators: plugin header field 'AuthorURI'
 #: woocommerce-domination.php:0
 #@ woocommerce-domination
 msgid "http://claudiosmweb.com/"
 msgstr "http://claudiosmweb.com/"
 
-#: includes/admin/class-wc-domination-admin.php:268
+#: woocommerce-domination.php:122
 #, php-format
 #@ woocommerce-domination
 msgid "You must install and active the %s 2.1 or later for the WooCommerce Domination work."
@@ -102,9 +97,15 @@ msgstr "Você precisa instalar e ativar o %s 2.1 ou superior para que o WooComme
 msgid "Allows the WooCommerce take the control of your WordPress admin."
 msgstr "Permite o WooCommerce tomar o controle do administrador do seu WordPress."
 
+#. translators: plugin header field 'Author'
+#: woocommerce-domination.php:0
+#@ woocommerce-domination
+msgid "Claudio Sanches"
+msgstr "Claudio Sanches"
+
 #. translators: plugin header field 'Version'
 #: woocommerce-domination.php:0
 #@ woocommerce-domination
-msgid "1.0.0"
-msgstr "1.0.0"
+msgid "1.1.0"
+msgstr "1.1.0"
 
