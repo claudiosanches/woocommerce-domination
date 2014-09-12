@@ -1,94 +1,35 @@
 <?php
-/**
- * WooCommerce Domination.
- *
- * @package WooCommerce_Domination
- * @author  Claudio Sanches <contato@claudiosmweb.com>
- * @license GPL-2.0+
- */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 /**
  * Plugin admin class.
- *
- * @package WC_Domination_Admin
- * @author  Claudio Sanches <contato@claudiosmweb.com>
  */
 class WC_Domination_Admin {
 
 	/**
-	 * Instance of this class.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @var   object
+	 * Initialize the plugin admin.
 	 */
-	protected static $instance = null;
+	public function __construct() {
+		// Menus.
+		add_action( 'admin_menu', array( $this, 'admin_menu' ), 999 );
+		add_action( 'menu_order', array( $this, 'menu_order' ), 999 );
 
-	/**
-	 * Initialize the plugin.
-	 */
-	private function __construct() {
-		$this->plugin_slug = WC_Domination::get_plugin_slug();
+		// WooCommerce Post types arguments.
+		add_filter( 'woocommerce_register_post_type_shop_order', array( $this, 'custom_post_type_shop_order' ) );
+		add_filter( 'woocommerce_register_post_type_shop_coupon', array( $this, 'custom_post_type_shop_coupon' ) );
 
-		if ( ! WC_Domination::has_woocommerce_activated() ) {
-			add_action( 'admin_notices', array( $this, 'woocommerce_fallback_notice' ) );
-			return;
-		}
+		// Screen ids.
+		add_filter( 'woocommerce_reports_screen_ids', array( $this, 'custom_screen_ids' ) );
+		add_filter( 'woocommerce_screen_ids', array( $this, 'custom_screen_ids' ) );
 
-		// Initialize plugin actions.
-		$this->init();
-	}
-
-	/**
-	 * Return an instance of this class.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return object A single instance of this class.
-	 */
-	public static function get_instance() {
-		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance ) {
-			self::$instance = new self;
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * Initialize WooCommerce custom actions only for shop managers.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return void
-	 */
-	public function init() {
-		if ( current_user_can( 'manage_woocommerce' ) ) {
-
-			// Menus.
-			add_action( 'admin_menu', array( $this, 'admin_menu' ), 999 );
-			add_action( 'menu_order', array( $this, 'menu_order' ), 999 );
-
-			// WooCommerce Post types arguments.
-			add_filter( 'woocommerce_register_post_type_shop_order', array( $this, 'custom_post_type_shop_order' ) );
-			add_filter( 'woocommerce_register_post_type_shop_coupon', array( $this, 'custom_post_type_shop_coupon' ) );
-
-			// Screen ids.
-			add_filter( 'woocommerce_reports_screen_ids', array( $this, 'custom_screen_ids' ) );
-			add_filter( 'woocommerce_screen_ids', array( $this, 'custom_screen_ids' ) );
-
-			// Menu highlight.
-			add_action( 'admin_head', array( $this, 'menu_highlight' ), 999 );
-
-			// Load admin scripts.
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 999 );
-		}
+		// Menu highlight.
+		add_action( 'admin_head', array( $this, 'menu_highlight' ), 999 );
 	}
 
 	/**
 	 * Remove menu items.
-	 *
-	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -101,7 +42,7 @@ class WC_Domination_Admin {
 			$menu[] = array( '', 'read', 'separator-wc-domination2', '', 'wp-not-current-submenu wp-menu-separator' );
 
 			// Add custom orders menu.
-			$orders_menu_name = _x( 'Orders', 'Admin menu name', $this->plugin_slug );
+			$orders_menu_name = _x( 'Orders', 'Admin menu name', 'woocommerce-domination' );
 			if ( $order_count = wc_processing_order_count() ) {
 				$orders_menu_name .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n( $order_count ) . '</span></span>';
 			}
@@ -109,17 +50,15 @@ class WC_Domination_Admin {
 
 			// Change wc-reports location.
 			remove_submenu_page( 'woocommerce', 'wc-reports' );
-			add_menu_page( __( 'Reports', $this->plugin_slug ),  __( 'Reports', $this->plugin_slug ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ), 'dashicons-chart-area' );
+			add_menu_page( __( 'Reports', 'woocommerce-domination' ),  __( 'Reports', 'woocommerce-domination' ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ), 'dashicons-chart-area' );
 
 			// Add customers menu.
-			add_menu_page( __( 'Customers', $this->plugin_slug ), __( 'Customers', $this->plugin_slug ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), 'dashicons-groups' );
+			add_menu_page( __( 'Customers', 'woocommerce-domination' ), __( 'Customers', 'woocommerce-domination' ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), 'dashicons-groups' );
 		}
 	}
 
 	/**
 	 * Custom WooCommerce screen ids.
-	 *
-	 * @since  1.0.0
 	 *
 	 * @param  array $ids Default screen ids.
 	 *
@@ -135,8 +74,6 @@ class WC_Domination_Admin {
 	/**
 	 * Custom shop order arguments.
 	 *
-	 * @since  1.0.0
-	 *
 	 * @param  array $args Post type arguments.
 	 *
 	 * @return array       Fixed show_in_menu item.
@@ -149,8 +86,6 @@ class WC_Domination_Admin {
 
 	/**
 	 * Custom shop coupon arguments.
-	 *
-	 * @since  1.0.0
 	 *
 	 * @param  array $args Post type arguments.
 	 *
@@ -165,8 +100,6 @@ class WC_Domination_Admin {
 
 	/**
 	 * Fixed shop order highlight.
-	 *
-	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -183,8 +116,6 @@ class WC_Domination_Admin {
 
 	/**
 	 * Menu order.
-	 *
-	 * @since  1.0.0
 	 *
 	 * @param  array $menu_order Current menu order.
 	 *
@@ -233,20 +164,7 @@ class WC_Domination_Admin {
 	}
 
 	/**
-	 * Register and enqueue admin-specific JavaScript.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return null Return early if no settings page is registered.
-	 */
-	public function enqueue_admin_scripts() {
-		wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'assets/css/menus.css', plugin_dir_path( dirname( __FILE__ ) ) ), array(), WC_Domination::VERSION );
-	}
-
-	/**
 	 * Customers list page.
-	 *
-	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -256,15 +174,6 @@ class WC_Domination_Admin {
 		$report = new WC_Report_Customer_List();
 		$report->output_report();
 	}
-
-	/**
-	 * Display a notice when WooCommerce is deactivated.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return string Admin notice.
-	 */
-	public function woocommerce_fallback_notice() {
-		echo '<div class="error"><p><strong>' . __( 'WooCommerce Domination is inactive.', $this->plugin_slug ) . '</strong> ' . sprintf( __( 'You must install and active the %s 2.1 or later for the WooCommerce Domination work.', $this->plugin_slug ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">' . __( 'WooCommerce', $this->plugin_slug ) . '</a>' ) . '</p></div>';
-	}
 }
+
+new WC_Domination_Admin();
