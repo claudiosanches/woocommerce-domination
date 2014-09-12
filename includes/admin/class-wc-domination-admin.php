@@ -172,7 +172,12 @@ class WC_Domination_Admin {
 		include_once WC()->plugin_path() . '/includes/admin/reports/class-wc-report-customer-list.php';
 
 		$report = new WC_Report_Customer_List();
-		$report->output_report();
+
+		echo '<div class="wrap">';
+			echo '<h2>' . __( 'Customers', 'woocommerce-domination' ) . '</h2>';
+
+			$report->output_report();
+		echo '</div>';
 	}
 }
 
