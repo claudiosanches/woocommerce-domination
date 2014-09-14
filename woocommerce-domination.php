@@ -54,6 +54,7 @@ class WC_Domination {
 				}
 
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999 );
+				add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999 );
 			}
 		} else {
 			add_action( 'admin_notices', array( $this, 'woocommerce_missing_notice' ) );
