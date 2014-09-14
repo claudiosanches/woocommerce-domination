@@ -110,7 +110,7 @@ class WC_Domination {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'assets/css/menus.css', dirname( __FILE__ ) ), array(), self::VERSION );
+		wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'assets/css/menus.css', __FILE__ ), array(), self::VERSION );
 	}
 
 	/**
