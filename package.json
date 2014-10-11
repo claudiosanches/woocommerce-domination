@@ -1,7 +1,7 @@
 {
   "name": "woocommerce-domination",
   "description": "Allows the WooCommerce take the control of your WordPress admin",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "Gruntfile.js",
   "devDependencies": {
     "grunt": "~0.4.1",

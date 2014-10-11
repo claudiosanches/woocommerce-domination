@@ -4,7 +4,7 @@ Donate link: http://claudiosmweb.com/doacoes/
 Tags: woocommerce, admin
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,12 +34,16 @@ This plugin only works with WooCommerce 2.1.x or later.
 
 == Changelog ==
 
-= 1.1.1 - 09/17/2014 =
+= 1.1.2 - 2014/10/11 =
+
+* Prevent erros when try re-order the menu items.
+
+= 1.1.1 - 2014/09/17 =
 
 * Fixed the menu.css path.
 * Load the menu.css in WordPress admin.
 
-= 1.1.0 - 09/11/2014 =
+= 1.1.0 - 2014/09/11 =
 
 * Fixed WooCommerce 2.2 support.
 * Improved the customers page.
@@ -51,9 +55,9 @@ This plugin only works with WooCommerce 2.1.x or later.
 
 == Upgrade Notice ==
 
-= 1.0.0 =
+= 1.1.2 =
 
-* Initial Version.
+* Prevent erros when try re-order the menu items.
 
 == License ==
 
