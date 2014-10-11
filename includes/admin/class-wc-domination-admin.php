@@ -125,27 +125,30 @@ class WC_Domination_Admin {
 		global $submenu;
 
 		// Fix WooCommerce submenus order.
-		$submenu_items = array();
+		$submenu_items     = array();
 		$woocommerce_order = 2;
 
-		foreach ( $submenu['woocommerce'] as $key => $items ) {
-			if ( in_array( 'wc-settings', $items ) ) {
-				$submenu_items[0] = $items;
-			} elseif ( in_array( 'woocommerce', $items ) ) {
-				continue;
-			} else {
-				$submenu_items[ $woocommerce_order ] = $items;
+		if ( isset( $submenu['woocommerce'] ) ) {
+			foreach ( $submenu['woocommerce'] as $key => $items ) {
+				if ( in_array( 'wc-settings', $items ) ) {
+					$submenu_items[0] = $items;
+				} elseif ( in_array( 'woocommerce', $items ) ) {
+					continue;
+				} else {
+					$submenu_items[ $woocommerce_order ] = $items;
+				}
+				$woocommerce_order++;
 			}
-			$woocommerce_order++;
 		}
+
 		$submenu['woocommerce'] = $submenu_items;
 
 		// Custom menu items order.
 		$menu_order = array(
-			2 => 'index.php',
-			4 => 'separator1',
-			6 => 'edit.php?post_type=shop_order',
-			8 => 'wc-reports',
+			2  => 'index.php',
+			4  => 'separator1',
+			6  => 'edit.php?post_type=shop_order',
+			8  => 'wc-reports',
 			10 => 'wc-customers-list',
 			12 => 'separator-wc-domination1',
 			14 => 'edit.php?post_type=product',
