@@ -2,9 +2,9 @@
 Contributors: claudiosanches
 Donate link: http://claudiosmweb.com/doacoes/
 Tags: woocommerce, admin
-Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 1.1.2
+Requires at least: 4.0
+Tested up to: 4.1
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,10 @@ This plugin only works with WooCommerce 2.1.x or later.
 
 == Changelog ==
 
+= 1.1.3 - 2015/02/17 =
+
+* Added support to WooCommerce 2.3.
+
 = 1.1.2 - 2014/10/11 =
 
 * Prevent erros when try re-order the menu items.
@@ -55,9 +59,9 @@ This plugin only works with WooCommerce 2.1.x or later.
 
 == Upgrade Notice ==
 
-= 1.1.2 =
+= 1.1.3 =
 
-* Prevent erros when try re-order the menu items.
+* Added support to WooCommerce 2.3.
 
 == License ==
 
