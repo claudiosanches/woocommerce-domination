@@ -30,8 +30,6 @@ class WC_Domination_Admin {
 
 	/**
 	 * Remove menu items.
-	 *
-	 * @return void
 	 */
 	public function admin_menu() {
 		global $menu;
@@ -100,8 +98,6 @@ class WC_Domination_Admin {
 
 	/**
 	 * Fixed shop order highlight.
-	 *
-	 * @return void
 	 */
 	public function menu_highlight() {
 		global $parent_file, $submenu_file, $post_type;

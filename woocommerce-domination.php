@@ -77,8 +77,6 @@ class WC_Domination {
 
 	/**
 	 * Load the plugin text domain for translation.
-	 *
-	 * @return void
 	 */
 	public function load_plugin_textdomain() {
 		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-domination' );
@@ -89,8 +87,6 @@ class WC_Domination {
 
 	/**
 	 * Includes.
-	 *
-	 * @return void.
 	 */
 	private function includes() {
 		include_once 'includes/class-wc-domination-admin-bar.php';
@@ -98,8 +94,6 @@ class WC_Domination {
 
 	/**
 	 * Admin includes.
-	 *
-	 * @return void.
 	 */
 	private function admin_includes() {
 		include_once 'includes/admin/class-wc-domination-admin.php';
@@ -107,8 +101,6 @@ class WC_Domination {
 
 	/**
 	 * Public scripts.
-	 *
-	 * @return void
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'woocommerce-domination-menus', plugins_url( 'assets/css/menus.css', __FILE__ ), array(), self::VERSION );

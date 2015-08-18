@@ -18,7 +18,7 @@ class WC_Domination_Admin_Bar {
 	/**
 	 * Custom admin bar.
 	 *
-	 * @return void
+	 * @param WP_Admin_Bar $wp_admin_bar
 	 */
 	public function admin_bar( $wp_admin_bar ) {
 		// Orders.
