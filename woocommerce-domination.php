@@ -124,6 +124,6 @@ class WC_Domination {
 	}
 }
 
-add_action( 'plugins_loaded', array( 'WC_Domination', 'get_instance' ), 0 );
+add_action( 'plugins_loaded', array( 'WC_Domination', 'get_instance' ) );
 
 endif;
