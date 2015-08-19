@@ -3,8 +3,8 @@
 **Donate link:** http://claudiosmweb.com/doacoes/  
 **Tags:** woocommerce, admin  
 **Requires at least:** 4.0  
-**Tested up to:** 4.1  
-**Stable tag:** 1.1.3  
+**Tested up to:** 4.3  
+**Stable tag:** 1.1.4  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -16,6 +16,14 @@ This plugin puts WooCommerce to first in the WordPress admin, highlighting the o
 See more details in the screenshots.
 
 This plugin only works with WooCommerce 2.1.x or later.
+
+### Translate ###
+
+You can translate this plugin for your language in [Transifex](https://www.transifex.com/projects/p/woocommerce-domination/).
+
+### Contribute ###
+
+You can contribute to the source code in our [GitHub](https://github.com/claudiosmweb/woocommerce-domination) page.
 
 ## Installation ##
 
@@ -35,6 +43,11 @@ This plugin only works with WooCommerce 2.1.x or later.
 
 
 ## Changelog ##
+
+### 1.1.4 - 2015/08/18 ###
+
+* Confirmed support for WooCommerce 2.4
+* Fixed plugin load.
 
 ### 1.1.3 - 2015/02/17 ###
 
@@ -61,9 +74,10 @@ This plugin only works with WooCommerce 2.1.x or later.
 
 ## Upgrade Notice ##
 
-### 1.1.3 ###
+### 1.1.4 ###
 
-* Added support to WooCommerce 2.3.
+* Confirmed support for WooCommerce 2.4
+* Fixed plugin load.
 
 ## License ##
 
