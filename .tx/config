@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[woocommerce-domination.woocommerce-domination]
+file_filter = languages/woocommerce-domination-<lang>.po
+source_file = languages/woocommerce-domination.pot
+source_lang = en
+type = PO
