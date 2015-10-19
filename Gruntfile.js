@@ -17,7 +17,6 @@ module.exports = function( grunt ) {
 			tag: '<%= svn_settings.path %>/tags/<%= pkg.version %>',
 			trunk: '<%= svn_settings.path %>/trunk',
 			exclude: [
-				'.tx/',
 				'.editorconfig',
 				'.git/',
 				'.gitignore',
@@ -90,13 +89,6 @@ module.exports = function( grunt ) {
 					'**/*.php', // Include all files
 					'!node_modules/**' // Exclude node_modules/
 				],
-				expand: true
-			}
-		},
-
-		po2mo: {
-			files: {
-				src: 'languages/*.po',
 				expand: true
 			}
 		},
