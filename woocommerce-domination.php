@@ -37,5 +37,5 @@ define( 'WC_DOMINATION_PLUGIN_FILE', __FILE__ );
 if ( ! class_exists( 'WC_Domination' ) ) {
 	include_once dirname( __FILE__ ) . '/includes/class-wc-domination.php';
 
-	add_action( 'plugins_loaded', array( 'WC_Domination', 'get_instance' ) );
+	add_action( 'plugins_loaded', array( 'WC_Domination', 'init' ) );
 }
