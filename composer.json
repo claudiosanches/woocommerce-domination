@@ -1,0 +1,36 @@
+{
+	"name": "claudiosanches/woocommerce-domination",
+	"description": "Allows the WooCommerce take the control of your WordPress admin.",
+	"homepage": "https://github.com/claudiosanches/woocommerce-domination",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0+",
+	"authors": [
+		{
+			"name": "Claudio Sanches",
+			"homepage": "https://claudiosanches.com",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"forum": "https://wordpress.org/support/plugin/woocommerce-domination",
+		"issues": "https://github.com/claudiosanches/woocommerce-domination/issues/",
+		"source": "https://github.com/claudiosanches/woocommerce-domination"
+	},
+	"require": {
+		"claudiosanches/wp-git-hooks": "^1.3.1"
+	},
+	"scripts": {
+		"pre-update-cmd": [
+			"ClaudioSanches\\WpGitHooks\\Hooks::preHooks"
+		],
+		"pre-install-cmd": [
+			"@pre-update-cmd"
+		],
+		"post-install-cmd": [
+			"ClaudioSanches\\WpGitHooks\\Hooks::postHooks"
+		],
+		"post-update-cmd": [
+			"@post-install-cmd"
+		]
+	}
+}
