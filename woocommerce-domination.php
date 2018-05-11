@@ -31,7 +31,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WC_DOMINATION_VERSION', '3.7.1' );
+define( 'WC_DOMINATION_VERSION', '1.1.5' );
 define( 'WC_DOMINATION_PLUGIN_FILE', __FILE__ );
 
 if ( ! class_exists( 'WC_Domination' ) ) {

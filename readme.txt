@@ -3,10 +3,10 @@ Contributors: claudiosanches
 Donate link: http://claudiosmweb.com/doacoes/
 Tags: woocommerce, admin
 Requires at least: 4.0
-Tested up to: 4.3
-Stable tag: 1.1.4
+Tested up to: 4.9
+Stable tag: 1.1.5
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Allows the WooCommerce take the control of your WordPress admin
 
@@ -15,32 +15,24 @@ Allows the WooCommerce take the control of your WordPress admin
 This plugin puts WooCommerce to first in the WordPress admin, highlighting the orders, reports, customers, products and coupons menus, plus add new buttons in the admin bar.
 See more details in the screenshots.
 
-This plugin only works with WooCommerce 2.1.x or later.
-
-= Translate =
-
-You can translate this plugin for your language in [Transifex](https://www.transifex.com/projects/p/woocommerce-domination/).
-
 = Contribute =
 
-You can contribute to the source code in our [GitHub](https://github.com/claudiosmweb/woocommerce-domination) page.
+You can contribute to the source code in our [GitHub](https://github.com/claudiosanches/woocommerce-domination) page.
 
 == Installation ==
 
 * Upload plugin files to your plugins folder, or install using WordPress built-in Add New Plugin installer;
 * Activate the plugin.
 
-== Frequently Asked Questions ==
-
-= What is the plugin license? =
-
-* This plugin is released under a GPL license.
-
 == Screenshots ==
 
 1. WordPress admin.
 
 == Changelog ==
+
+= 1.1.5 - 2018/05/11 =
+
+* Confirmed support for any version of WooCommerce 3.x (including 3.4).
 
 = 1.1.4 - 2015/08/18 =
 
@@ -64,7 +56,6 @@ You can contribute to the source code in our [GitHub](https://github.com/claudio
 
 * Fixed WooCommerce 2.2 support.
 * Improved the customers page.
-* Added ru_RU translation.
 
 = 1.0.0 =
 
@@ -72,19 +63,6 @@ You can contribute to the source code in our [GitHub](https://github.com/claudio
 
 == Upgrade Notice ==
 
-= 1.1.4 =
+= 1.1.5 =
 
-* Confirmed support for WooCommerce 2.4
-* Fixed plugin load.
-
-== License ==
-
-This file is part of WooCommerce Domination.
-
-WooCommerce Domination is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published
-by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-WooCommerce Domination is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-Get a copy of the GNU General Public License in <http://www.gnu.org/licenses/>.
+* Confirmed support for any version of WooCommerce 3.x (including 3.4).
