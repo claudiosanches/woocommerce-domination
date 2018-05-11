@@ -60,7 +60,7 @@ msgid "WooCommerce Domination"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://github.com/claudiosmweb/woocommerce-domination"
+msgid "https://github.com/claudiosanches/woocommerce-domination"
 msgstr ""
 
 #. Description of the plugin/theme

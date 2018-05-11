@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:          WooCommerce Domination
- * Plugin URI:           https://github.com/claudiosmweb/woocommerce-domination
+ * Plugin URI:           https://github.com/claudiosanches/woocommerce-domination
  * Description:          Allows the WooCommerce take the control of your WordPress admin.
  * Author:               Claudio Sanches
  * Author URI:           https://claudiosanches.com

@@ -1,6 +1,6 @@
 # WooCommerce Domination #
 **Contributors:** [claudiosanches](https://profiles.wordpress.org/claudiosanches)  
-**Donate link:** http://claudiosmweb.com/doacoes/  
+**Donate link:** http://claudiosanches.com/doacoes/  
 **Tags:** woocommerce, admin  
 **Requires at least:** 4.0  
 **Tested up to:** 4.9  
