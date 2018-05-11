@@ -4,7 +4,7 @@ Donate link: http://claudiosmweb.com/doacoes/
 Tags: woocommerce, admin
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,10 @@ You can contribute to the source code in our [GitHub](https://github.com/claudio
 1. WordPress admin.
 
 == Changelog ==
+
+= 1.1.6 - 2018/05/11 =
+
+* Fixed plugin text domain.
 
 = 1.1.5 - 2018/05/11 =
 
@@ -63,6 +67,7 @@ You can contribute to the source code in our [GitHub](https://github.com/claudio
 
 == Upgrade Notice ==
 
-= 1.1.5 =
+= 1.1.6 =
 
 * Confirmed support for any version of WooCommerce 3.x (including 3.4).
+* Fixed plugin text domain.

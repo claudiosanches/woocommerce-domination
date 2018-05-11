@@ -40,7 +40,7 @@ class WC_Domination {
 	 * Load the plugin text domain for translation.
 	 */
 	public static function load_plugin_textdomain() {
-		load_plugin_textdomain( 'woocommerce-correios', false, dirname( plugin_basename( WC_DOMINATION_PLUGIN_FILE ) ) . '/languages/' );
+		load_plugin_textdomain( 'woocommerce-domination', false, dirname( plugin_basename( WC_DOMINATION_PLUGIN_FILE ) ) . '/languages/' );
 	}
 
 	/**
