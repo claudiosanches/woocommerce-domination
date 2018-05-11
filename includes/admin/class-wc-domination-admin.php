@@ -1,7 +1,11 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+/**
+ * Admin actions
+ *
+ * @package WooCommerce_Domination\Admin
+ */
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Plugin admin class.
@@ -35,20 +39,22 @@ class WC_Domination_Admin {
 		global $menu;
 
 		if ( class_exists( 'WC_Admin_Menus' ) ) {
-			$wc_admin_menus = new WC_Admin_Menus;
-			$menu[] = array( '', 'read', 'separator-wc-domination1', '', 'wp-not-current-submenu wp-menu-separator' );
-			$menu[] = array( '', 'read', 'separator-wc-domination2', '', 'wp-not-current-submenu wp-menu-separator' );
+			$wc_admin_menus = new WC_Admin_Menus();
+			$menu[]         = array( '', 'read', 'separator-wc-domination1', '', 'wp-not-current-submenu wp-menu-separator' ); // WPCS: override ok.
+			$menu[]         = array( '', 'read', 'separator-wc-domination2', '', 'wp-not-current-submenu wp-menu-separator' ); // WPCS: override ok.
 
 			// Add custom orders menu.
 			$orders_menu_name = _x( 'Orders', 'Admin menu name', 'woocommerce-domination' );
-			if ( $order_count = wc_processing_order_count() ) {
+			$order_count      = wc_processing_order_count();
+
+			if ( $order_count ) {
 				$orders_menu_name .= ' <span class="awaiting-mod update-plugins count-' . $order_count . '"><span class="processing-count">' . number_format_i18n( $order_count ) . '</span></span>';
 			}
 			add_menu_page( $orders_menu_name, $orders_menu_name, 'manage_woocommerce', 'edit.php?post_type=shop_order', '', 'dashicons-list-view' );
 
 			// Change wc-reports location.
 			remove_submenu_page( 'woocommerce', 'wc-reports' );
-			add_menu_page( __( 'Reports', 'woocommerce-domination' ),  __( 'Reports', 'woocommerce-domination' ) , 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ), 'dashicons-chart-area' );
+			add_menu_page( __( 'Reports', 'woocommerce-domination' ), __( 'Reports', 'woocommerce-domination' ), 'view_woocommerce_reports', 'wc-reports', array( $wc_admin_menus, 'reports_page' ), 'dashicons-chart-area' );
 
 			// Add customers menu.
 			add_menu_page( __( 'Customers', 'woocommerce-domination' ), __( 'Customers', 'woocommerce-domination' ), 'manage_woocommerce', 'wc-customers-list', array( $this, 'customers_list_page' ), 'dashicons-groups' );
@@ -103,9 +109,9 @@ class WC_Domination_Admin {
 		global $parent_file, $submenu_file, $post_type;
 
 		if ( isset( $post_type ) ) {
-			if ( in_array( $post_type, array( 'shop_order', 'shop_coupon' ) ) ) {
-				$submenu_file = 'edit.php?post_type=' . esc_attr( $post_type );
-				$parent_file  = 'edit.php?post_type=' . esc_attr( $post_type );
+			if ( in_array( $post_type, array( 'shop_order', 'shop_coupon' ), true ) ) {
+				$submenu_file = 'edit.php?post_type=' . esc_attr( $post_type ); // WPCS: override ok.
+				$parent_file  = 'edit.php?post_type=' . esc_attr( $post_type ); // WPCS: override ok.
 			}
 		}
 	}
@@ -128,17 +134,17 @@ class WC_Domination_Admin {
 		if ( isset( $submenu['woocommerce'] ) ) {
 			foreach ( $submenu['woocommerce'] as $key => $items ) {
 				if ( $wc_23 ) {
-					if ( in_array( 'wc-settings', $items ) ) {
+					if ( in_array( 'wc-settings', $items, true ) ) {
 						$submenu_items[1] = $items;
-					} elseif ( in_array( 'woocommerce', $items ) ) {
+					} elseif ( in_array( 'woocommerce', $items, true ) ) {
 						$submenu_items[0] = $items;
 					} else {
 						$submenu_items[ $woocommerce_order ] = $items;
 					}
 				} else {
-					if ( in_array( 'wc-settings', $items ) ) {
+					if ( in_array( 'wc-settings', $items, true ) ) {
 						$submenu_items[0] = $items;
-					} elseif ( in_array( 'woocommerce', $items ) ) {
+					} elseif ( in_array( 'woocommerce', $items, true ) ) {
 						continue;
 					} else {
 						$submenu_items[ $woocommerce_order ] = $items;
@@ -151,7 +157,7 @@ class WC_Domination_Admin {
 
 		// Fix the array order.
 		ksort( $submenu_items );
-		$submenu['woocommerce'] = array_values( $submenu_items );
+		$submenu['woocommerce'] = array_values( $submenu_items ); // WPCS: override ok.
 
 		// Custom menu items order.
 		$menu_order = array(
@@ -178,8 +184,6 @@ class WC_Domination_Admin {
 
 	/**
 	 * Customers list page.
-	 *
-	 * @return string
 	 */
 	public function customers_list_page() {
 		include_once WC()->plugin_path() . '/includes/admin/reports/class-wc-report-customer-list.php';
@@ -187,7 +191,7 @@ class WC_Domination_Admin {
 		$report = new WC_Report_Customer_List();
 
 		echo '<div class="wrap">';
-			echo '<h2>' . __( 'Customers', 'woocommerce-domination' ) . '</h2>';
+			echo '<h1 class="wp-heading-inline">' . esc_html__( 'Customers', 'woocommerce-domination' ) . '</h2>';
 
 			$report->output_report();
 		echo '</div>';
