@@ -1,6 +1,6 @@
 <?php
 /**
- * WooCommerce Domination actions
+ * Plugin's main class
  *
  * @package WooCommerce_Domination
  */
@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * WooCommerce Domination main class.
+ * Plugin's main class.
  */
 class WC_Domination {
 
@@ -69,6 +69,6 @@ class WC_Domination {
 	 */
 	public static function woocommerce_missing_notice() {
 		/* translators: %s: WooCommerce URL */
-		echo '<div class="error"><p><strong>' . esc_html__( 'WooCommerce Domination is inactive.', 'woocommerce-domination' ) . '</strong> ' . wp_kses_post( sprintf( __( 'You must install and active the %s 2.1 or later for the WooCommerce Domination work.', 'woocommerce-domination' ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">' . esc_html__( 'WooCommerce', 'woocommerce-domination' ) . '</a>' ) ) . '</p></div>';
+		echo '<div class="error"><p><strong>' . esc_html__( 'DOMINATION! is inactive.', 'woocommerce-domination' ) . '</strong> ' . wp_kses_post( sprintf( __( 'You must install and active the %s 2.1 or later for the DOMINATION! work.', 'woocommerce-domination' ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">' . esc_html__( 'WooCommerce', 'woocommerce-domination' ) . '</a>' ) ) . '</p></div>';
 	}
 }

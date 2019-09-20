@@ -1,10 +1,10 @@
-=== WooCommerce Domination ===
+=== DOMINATION! Let WooCommerce take control of your dashboard ===
 Contributors: claudiosanches
 Donate link: http://claudiosanches.com/doacoes/
 Tags: woocommerce, admin
 Requires at least: 4.0
-Tested up to: 4.9
-Stable tag: 1.1.6
+Tested up to: 5.2
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,10 @@ You can contribute to the source code in our [GitHub](https://github.com/claudio
 1. WordPress admin.
 
 == Changelog ==
+
+= 1.2.0 - 2019/09/20 =
+
+* Changed plugin's name from "WooCommerce Domination" to "DOMINATION! Let WooCommerce take control of your dashboard".
 
 = 1.1.6 - 2018/05/11 =
 
@@ -67,7 +71,6 @@ You can contribute to the source code in our [GitHub](https://github.com/claudio
 
 == Upgrade Notice ==
 
-= 1.1.6 =
+= 1.2.0 =
 
-* Confirmed support for any version of WooCommerce 3.x (including 3.4).
-* Fixed plugin text domain.
+* Changed plugin's name from "WooCommerce Domination" to "DOMINATION! Let WooCommerce take control of your dashboard".
